@@ -70,6 +70,6 @@ if mobs_doomed.config.elephant.spawn.enabled then
 		mobs_doomed.config.elephant.spawn.active_object_count,
 		mobs_doomed.config.elephant.spawn.min_height,
 		mobs_doomed.config.elephant.spawn.max_height,
-		true,
+		true
 	)
 end

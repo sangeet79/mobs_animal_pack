@@ -3,30 +3,30 @@ if not mobs.mod == "redo" then return end
 local mod_config = config.settings_model('mobs_fish', {
 	clownfish = {
 		spawn = {
-			enabled = types.boolean(true),
-			on = types.list({"default:water_source", "default:water_flowing", "default:river_water_source", "default:river_water_flowing"}),
-			near = types.list({"default:sand","default:dirt","group:seaplants","group:seacoral"}),
-			interval = types.int(30, { min=1 }),
-			chance = types.int(100000, { min=1 }),
-			min_light = types.int(5, { min=0 }),
-			max_light = types.int(20, { min=0 }),
-			min_height = types.int(-50, { min=-31000, max=31000 }),
-			max_height = types.int(-1, { min=-31000, max=31000 }),
-			active_object_count = types.int(1, { min=1 }),
+			enabled = config.types.boolean(true),
+			on = config.types.list({"default:water_source", "default:water_flowing", "default:river_water_source", "default:river_water_flowing"}),
+			near = config.types.list({"default:sand","default:dirt","group:seaplants","group:seacoral"}),
+			interval = config.types.int(30, { min=1 }),
+			chance = config.types.int(100000, { min=1 }),
+			min_light = config.types.int(5, { min=0 }),
+			max_light = config.types.int(20, { min=0 }),
+			min_height = config.types.int(-50, { min=-31000, max=31000 }),
+			max_height = config.types.int(-1, { min=-31000, max=31000 }),
+			active_object_count = config.types.int(1, { min=1 }),
 		}
 	},
 	tropical = {
 		spawn = {
-			enabled = types.boolean(true),
-			on = types.list({"default:water_source", "default:water_flowing", "default:river_water_source", "default:river_water_flowing"}),
-			near = types.list({"default:sand","default:dirt","group:seaplants","group:seacoral"}),
-			interval = types.int(30, { min=1 }),
-			chance = types.int(100000, { min=1 }),
-			min_light = types.int(5, { min=0 }),
-			max_light = types.int(20, { min=0 }),
-			min_height = types.int(-50, { min=-31000, max=31000 }),
-			max_height = types.int(-1, { min=-31000, max=31000 }),
-			active_object_count = types.int(1, { min=1 }),
+			enabled = config.types.boolean(true),
+			on = config.types.list({"default:water_source", "default:water_flowing", "default:river_water_source", "default:river_water_flowing"}),
+			near = config.types.list({"default:sand","default:dirt","group:seaplants","group:seacoral"}),
+			interval = config.types.int(30, { min=1 }),
+			chance = config.types.int(100000, { min=1 }),
+			min_light = config.types.int(5, { min=0 }),
+			max_light = config.types.int(20, { min=0 }),
+			min_height = config.types.int(-50, { min=-31000, max=31000 }),
+			max_height = config.types.int(-1, { min=-31000, max=31000 }),
+			active_object_count = config.types.int(1, { min=1 }),
 		}
 	}
 })
@@ -95,7 +95,7 @@ if mod_config.clownfish.spawn.enabled then
 		mod_config.clownfish.spawn.chance,
 		mod_config.clownfish.spawn.active_object_count,
 		mod_config.clownfish.spawn.min_height,
-		mod_config.clownfish.spawn.max_height,
+		mod_config.clownfish.spawn.max_height
 	)
 end
 mobs:register_egg("mobs_fish:clownfish", "Clownfish", "animal_clownfish_clownfish_item.png", 0)
@@ -140,7 +140,7 @@ if mod_config.tropical.spawn.enabled then
 		mod_config.tropical.spawn.chance,
 		mod_config.tropical.spawn.active_object_count,
 		mod_config.tropical.spawn.min_height,
-		mod_config.tropical.spawn.max_height,
+		mod_config.tropical.spawn.max_height
 	)
 end
 mobs:register_egg("mobs_fish:tropical", "Tropical fish", "animal_fish_blue_white_fish_blue_white_item.png", 0)

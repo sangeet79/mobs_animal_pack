@@ -3,16 +3,16 @@ if not mobs.mod == "redo" then return end
 local mod_config = config.settings_model('mobs_mr_goat', {
 	goat = {
 		spawn = {
-			enabled = types.boolean(true),
-			on = types.list({"default:dirt_with_grass", "ethereal:green_dirt_top"}),
-			near = types.list({ "air" }),
-			interval = types.int(30, { min=1 }),
-			chance = types.int(300000, { min=1 }),
-			min_light = types.int(10, { min=0 }),
-			max_light = types.int(15, { min=0 }),
-			min_height = types.int(1, { min=-31000, max=31000 }),
-			max_height = types.int(5000, { min=-31000, max=31000 }),
-			active_object_count = types.int(1, { min=1 }),
+			enabled = config.types.boolean(true),
+			on = config.types.list({"default:dirt_with_grass", "ethereal:green_dirt_top"}),
+			near = config.types.list({ "air" }),
+			interval = config.types.int(30, { min=1 }),
+			chance = config.types.int(300000, { min=1 }),
+			min_light = config.types.int(10, { min=0 }),
+			max_light = config.types.int(15, { min=0 }),
+			min_height = config.types.int(1, { min=-31000, max=31000 }),
+			max_height = config.types.int(5000, { min=-31000, max=31000 }),
+			active_object_count = config.types.int(1, { min=1 }),
 		}
 	}
 })

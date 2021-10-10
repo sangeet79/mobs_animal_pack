@@ -65,6 +65,6 @@ if mobs_doomed.config.whale.spawn.enabled then
 		mobs_doomed.config.whale.spawn.active_object_count,
 		mobs_doomed.config.whale.spawn.min_height,
 		mobs_doomed.config.whale.spawn.max_height,
-		true,
+		true
 	)
 end

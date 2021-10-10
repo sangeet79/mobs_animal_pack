@@ -78,6 +78,6 @@ if mobs_doomed.config.fox.spawn.enabled then
 		mobs_doomed.config.fox.spawn.chance,
 		mobs_doomed.config.fox.spawn.active_object_count,
 		mobs_doomed.config.fox.spawn.min_height,
-		mobs_doomed.config.fox.spawn.max_height,
+		mobs_doomed.config.fox.spawn.max_height
 	)
 end

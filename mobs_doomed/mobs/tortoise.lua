@@ -65,6 +65,6 @@ if mobs_doomed.config.tortoise.spawn.enabled then
 		mobs_doomed.config.tortoise.spawn.active_object_count,
 		mobs_doomed.config.tortoise.spawn.min_height,
 		mobs_doomed.config.tortoise.spawn.max_height,
-		true,
+		true
 	)
 end

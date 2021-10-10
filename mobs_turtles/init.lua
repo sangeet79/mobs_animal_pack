@@ -3,30 +3,30 @@ if not mobs.mod == "redo" then return end
 local mod_config = config.settings_model('mobs_turtles', {
 	turtle = {
 		spawn = {
-			enabled = types.boolean(true),
-			on = types.list({"default:dirt_with_grass","default:jungle_grass","default:sand","default:desert_sand"}),
-			near = types.list({"default:dirt_with_grass","default:jungle_grass","default:sand","default:desert_sand","default:papyrus","default:cactus","dryplants:juncus","dryplants:reedmace"}),
-			interval = types.int(30, { min=1 }),
-			chance = types.int(300000, { min=1 }),
-			min_light = types.int(5, { min=0 }),
-			max_light = types.int(20, { min=0 }),
-			min_height = types.int(1, { min=-31000, max=31000 }),
-			max_height = types.int(5000, { min=-31000, max=31000 }),
-			active_object_count = types.int(1, { min=1 }),
+			enabled = config.types.boolean(true),
+			on = config.types.list({"default:dirt_with_grass","default:jungle_grass","default:sand","default:desert_sand"}),
+			near = config.types.list({"default:dirt_with_grass","default:jungle_grass","default:sand","default:desert_sand","default:papyrus","default:cactus","dryplants:juncus","dryplants:reedmace"}),
+			interval = config.types.int(30, { min=1 }),
+			chance = config.types.int(300000, { min=1 }),
+			min_light = config.types.int(5, { min=0 }),
+			max_light = config.types.int(20, { min=0 }),
+			min_height = config.types.int(1, { min=-31000, max=31000 }),
+			max_height = config.types.int(5000, { min=-31000, max=31000 }),
+			active_object_count = config.types.int(1, { min=1 }),
 		}
 	},
 	seaturtle = {
 		spawn = {
-			enabled = types.boolean(true),
-			on = types.list({"default:water_flowing","default:water_source"}),
-			near = types.list({"default:water_flowing","default:water_source","group:seaplants","seawrecks:woodship","seawrecks:uboot"}),
-			interval = types.int(30, { min=1 }),
-			chance = types.int(300000, { min=1 }),
-			min_light = types.int(5, { min=0 }),
-			max_light = types.int(20, { min=0 }),
-			min_height = types.int(-50, { min=-31000, max=31000 }),
-			max_height = types.int(0, { min=-31000, max=31000 }),
-			active_object_count = types.int(1, { min=1 }),
+			enabled = config.types.boolean(true),
+			on = config.types.list({"default:water_flowing","default:water_source"}),
+			near = config.types.list({"default:water_flowing","default:water_source","group:seaplants","seawrecks:woodship","seawrecks:uboot"}),
+			interval = config.types.int(30, { min=1 }),
+			chance = config.types.int(300000, { min=1 }),
+			min_light = config.types.int(5, { min=0 }),
+			max_light = config.types.int(20, { min=0 }),
+			min_height = config.types.int(-50, { min=-31000, max=31000 }),
+			max_height = config.types.int(0, { min=-31000, max=31000 }),
+			active_object_count = config.types.int(1, { min=1 }),
 		}
 	}
 })
@@ -137,7 +137,7 @@ if mod_config.turtle.spawn.enabled then
 		mod_config.turtle.spawn.chance,
 		mod_config.turtle.spawn.active_object_count,
 		mod_config.turtle.spawn.min_height,
-		mod_config.turtle.spawn.max_height,
+		mod_config.turtle.spawn.max_height
 	)
 end
 mobs:register_egg("mobs_turtles:turtle", "Turtle", "default_grass.png", 1)
@@ -192,7 +192,7 @@ if mod_config.seaturtle.spawn.enabled then
 		mod_config.seaturtle.spawn.chance,
 		mod_config.seaturtle.spawn.active_object_count,
 		mod_config.seaturtle.spawn.min_height,
-		mod_config.seaturtle.spawn.max_height,
+		mod_config.seaturtle.spawn.max_height
 	)
 end
 mobs:register_egg("mobs_turtles:seaturtle", "Sea Turtle", "default_water.png", 1)

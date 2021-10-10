@@ -3,8 +3,8 @@ if not mobs.mod == "redo" then return end
 local mod_config = config.settings_model('mobs_bugslive', {
 	bug = {
 		spawn = {
-			enabled = types.boolean(true),
-			on = types.list({
+			enabled = config.types.boolean(true),
+			on = config.types.list({
 				"default:dirt",
 				"default:dirt_with_grass",
 				"default:dirt_with_coniferous_litter",
@@ -13,14 +13,14 @@ local mod_config = config.settings_model('mobs_bugslive', {
 				"default:stone",
 				"ethereal:green_dirt_top"
 			}),
-			near = types.list({ "air", "default:water_source", "default:water_flowing", "default:river_water_source", "default:river_water_flowing" }),
-			interval = types.int(30, { min=1 }),
-			chance = types.int(300000, { min=1 }),
-			min_light = types.int(0, { min=0 }),
-			max_light = types.int(15, { min=0 }),
-			min_height = types.int(-25000, { min=-31000, max=31000 }),
-			max_height = types.int(5000, { min=-31000, max=31000 }),
-			active_object_count = types.int(2, { min=1 }),
+			near = config.types.list({ "air", "default:water_source", "default:water_flowing", "default:river_water_source", "default:river_water_flowing" }),
+			interval = config.types.int(30, { min=1 }),
+			chance = config.types.int(300000, { min=1 }),
+			min_light = config.types.int(0, { min=0 }),
+			max_light = config.types.int(15, { min=0 }),
+			min_height = config.types.int(-25000, { min=-31000, max=31000 }),
+			max_height = config.types.int(5000, { min=-31000, max=31000 }),
+			active_object_count = config.types.int(2, { min=1 }),
 		}
 	}
 })
@@ -100,7 +100,7 @@ if mod_config.bug.spawn.enabled then
 		mod_config.bug.spawn.chance,
 		mod_config.bug.spawn.active_object_count,
 		mod_config.bug.spawn.min_height,
-		mod_config.bug.spawn.max_height,
+		mod_config.bug.spawn.max_height
 	)
 end
 

@@ -30,44 +30,44 @@ local l_capture_chance_n	= 60
 local mod_config = config.settings_model('mobs_birds', {
 	gull = {
 		spawn = {
-			enabled = types.boolean(true),
-			on = types.list({ "air" }),
-			near = types.list({"default:water_source", "default:water_flowing"}),
-			interval = types.int(30, { min=1 }),
-			chance = types.int(240000, { min=1 }),
-			min_light = types.int(5, { min=0 }),
-			max_light = types.int(20, { min=0 }),
-			min_height = types.int(0, { min=-31000, max=31000 }),
-			max_height = types.int(5000, { min=-31000, max=31000 }),
-			active_object_count = types.int(1, { min=1 }),
+			enabled = config.types.boolean(true),
+			on = config.types.list({ "air" }),
+			near = config.types.list({"default:water_source", "default:water_flowing"}),
+			interval = config.types.int(30, { min=1 }),
+			chance = config.types.int(240000, { min=1 }),
+			min_light = config.types.int(5, { min=0 }),
+			max_light = config.types.int(20, { min=0 }),
+			min_height = config.types.int(0, { min=-31000, max=31000 }),
+			max_height = config.types.int(5000, { min=-31000, max=31000 }),
+			active_object_count = config.types.int(1, { min=1 }),
 		}
 	},
 	bird_lg = {
 		spawn = {
-			enabled = types.boolean(true),
-			on = types.list({ "air" }),
-			near = types.list({"default:leaves", "default:pine_needles", "default:jungleleaves", "default:cactus"}),
-			interval = types.int(30, { min=1 }),
-			chance = types.int(360000, { min=1 }),
-			min_light = types.int(5, { min=0 }),
-			max_light = types.int(20, { min=0 }),
-			min_height = types.int(0, { min=-31000, max=31000 }),
-			max_height = types.int(5000, { min=-31000, max=31000 }),
-			active_object_count = types.int(1, { min=1 }),
+			enabled = config.types.boolean(true),
+			on = config.types.list({ "air" }),
+			near = config.types.list({"default:leaves", "default:pine_needles", "default:jungleleaves", "default:cactus"}),
+			interval = config.types.int(30, { min=1 }),
+			chance = config.types.int(360000, { min=1 }),
+			min_light = config.types.int(5, { min=0 }),
+			max_light = config.types.int(20, { min=0 }),
+			min_height = config.types.int(0, { min=-31000, max=31000 }),
+			max_height = config.types.int(5000, { min=-31000, max=31000 }),
+			active_object_count = config.types.int(1, { min=1 }),
 		}
 	},
 	bird_sm = {
 		spawn = {
-			enabled = types.boolean(true),
-			on = types.list({ "air" }),
-			near = types.list({"default:leaves", "default:pine_needles", "default:jungleleaves", "default:cactus"}),
-			interval = types.int(30, { min=1 }),
-			chance = types.int(360000, { min=1 }),
-			min_light = types.int(5, { min=0 }),
-			max_light = types.int(20, { min=0 }),
-			min_height = types.int(0, { min=-31000, max=31000 }),
-			max_height = types.int(5000, { min=-31000, max=31000 }),
-			active_object_count = types.int(1, { min=1 }),
+			enabled = config.types.boolean(true),
+			on = config.types.list({ "air" }),
+			near = config.types.list({"default:leaves", "default:pine_needles", "default:jungleleaves", "default:cactus"}),
+			interval = config.types.int(30, { min=1 }),
+			chance = config.types.int(360000, { min=1 }),
+			min_light = config.types.int(5, { min=0 }),
+			max_light = config.types.int(20, { min=0 }),
+			min_height = config.types.int(0, { min=-31000, max=31000 }),
+			max_height = config.types.int(5000, { min=-31000, max=31000 }),
+			active_object_count = config.types.int(1, { min=1 }),
 		}
 	}
 })
@@ -114,7 +114,7 @@ if mod_config.gull.spawn.enbaled then
 		mod_config.gull.spawn.chance,
 		mod_config.gull.spawn.active_object_count,
 		mod_config.gull.spawn.min_height,
-		mod_config.gull.spawn.max_height,
+		mod_config.gull.spawn.max_height
 	)
 end
 mobs:register_egg("mobs_birds:gull", "Gull", l_egg_texture, 1)
@@ -162,7 +162,7 @@ if mod_config.bird_lg.spawn.enabled then
 		mod_config.bird_lg.spawn.chance,
 		mod_config.bird_lg.spawn.active_object_count,
 		mod_config.bird_lg.spawn.min_height,
-		mod_config.bird_lg.spawn.max_height,
+		mod_config.bird_lg.spawn.max_height
 	)
 end
 mobs:register_egg("mobs_birds:bird_lg", "Large bird", l_egg_texture, 1)
@@ -210,7 +210,7 @@ if mod_config.bird_sm.spawn.enabled then
 		mod_config.bird_sm.spawn.chance,
 		mod_config.bird_sm.spawn.active_object_count,
 		mod_config.bird_sm.spawn.min_height,
-		mod_config.bird_sm.spawn.max_height,
+		mod_config.bird_sm.spawn.max_height
 	)
 end
 mobs:register_egg("mobs_birds:bird_sm", "Small bird", l_egg_texture, 1)

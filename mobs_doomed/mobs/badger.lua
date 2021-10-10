@@ -75,6 +75,6 @@ if mobs_doomed.config.badger.spawn.enabled then
 		mobs_doomed.config.badger.spawn.chance,
 		mobs_doomed.config.badger.spawn.active_object_count,
 		mobs_doomed.config.badger.spawn.min_height,
-		mobs_doomed.config.badger.spawn.max_height,
+		mobs_doomed.config.badger.spawn.max_height
 	)
 end

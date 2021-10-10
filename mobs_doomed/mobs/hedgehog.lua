@@ -63,6 +63,6 @@ if mobs_doomed.config.hedgehog.spawn.enabled then
 		mobs_doomed.config.hedgehog.spawn.chance,
 		mobs_doomed.config.hedgehog.spawn.active_object_count,
 		mobs_doomed.config.hedgehog.spawn.min_height,
-		mobs_doomed.config.hedgehog.spawn.max_height,
+		mobs_doomed.config.hedgehog.spawn.max_height
 	)
 end

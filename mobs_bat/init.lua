@@ -9,16 +9,16 @@ local l_skins = {
 local mod_config = config.settings_model('mobs_bat', {
 	bat = {
 		spawn = {
-			enabled = types.boolean(true),
-			on = types.list({ "air" }),
-			near = types.list({ "default:stone" }),
-			interval = types.int(30, { min=1 }),
-			chance = types.int(300000, { min=1 }),
-			min_light = types.int(0, { min=0 }),
-			max_light = types.int(6, { min=0 }),
-			min_height = types.int(-25000, { min=-31000, max=31000 }),
-			max_height = types.int(5000, { min=-31000, max=31000 }),
-			active_object_count = types.int(2, { min=1 }),
+			enabled = config.types.boolean(true),
+			on = config.types.list({ "air" }),
+			near = config.types.list({ "default:stone" }),
+			interval = config.types.int(30, { min=1 }),
+			chance = config.types.int(300000, { min=1 }),
+			min_light = config.types.int(0, { min=0 }),
+			max_light = config.types.int(6, { min=0 }),
+			min_height = config.types.int(-25000, { min=-31000, max=31000 }),
+			max_height = config.types.int(5000, { min=-31000, max=31000 }),
+			active_object_count = config.types.int(2, { min=1 }),
 		}
 	}
 })
@@ -78,7 +78,7 @@ if mod_config.bat.spawn.enabled then
 		mod_config.bat.spawn.chance,
 		mod_config.bat.spawn.active_object_count,
 		mod_config.bat.spawn.min_height,
-		mod_config.bat.spawn.max_height,
+		mod_config.bat.spawn.max_height
 	)
 end
 

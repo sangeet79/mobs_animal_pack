@@ -59,6 +59,6 @@ if mobs_doomed.config.owl.spawn.enabled then
 		mobs_doomed.config.owl.spawn.active_object_count,
 		mobs_doomed.config.owl.spawn.min_height,
 		mobs_doomed.config.owl.spawn.max_height,
-		false,
+		false
 	)
 end
