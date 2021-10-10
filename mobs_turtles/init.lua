@@ -1,5 +1,36 @@
 if not mobs.mod == "redo" then return end
 
+local mod_config = config.settings_model('mobs_turtles', {
+	turtle = {
+		spawn = {
+			enabled = types.boolean(true),
+			on = types.list({"default:dirt_with_grass","default:jungle_grass","default:sand","default:desert_sand"}),
+			near = types.list({"default:dirt_with_grass","default:jungle_grass","default:sand","default:desert_sand","default:papyrus","default:cactus","dryplants:juncus","dryplants:reedmace"}),
+			interval = types.int(30, { min=1 }),
+			chance = types.int(300000, { min=1 }),
+			min_light = types.int(5, { min=0 }),
+			max_light = types.int(20, { min=0 }),
+			min_height = types.int(1, { min=-31000, max=31000 }),
+			max_height = types.int(5000, { min=-31000, max=31000 }),
+			active_object_count = types.int(1, { min=1 }),
+		}
+	},
+	seaturtle = {
+		spawn = {
+			enabled = types.boolean(true),
+			on = types.list({"default:water_flowing","default:water_source"}),
+			near = types.list({"default:water_flowing","default:water_source","group:seaplants","seawrecks:woodship","seawrecks:uboot"}),
+			interval = types.int(30, { min=1 }),
+			chance = types.int(300000, { min=1 }),
+			min_light = types.int(5, { min=0 }),
+			max_light = types.int(20, { min=0 }),
+			min_height = types.int(-50, { min=-31000, max=31000 }),
+			max_height = types.int(0, { min=-31000, max=31000 }),
+			active_object_count = types.int(1, { min=1 }),
+		}
+	}
+})
+
 local l_colors = {
 	"#604000:175",	--brown
 	"#604000:100",	--brown2
@@ -21,7 +52,6 @@ local l_anims = {
 	hide_start = 95,	hide_end = 100
 }
 local l_model			= "mobf_turtle.x"
-local l_spawn_chance	= 300000
 
 -- land turtle
 mobs:register_mob("mobs_turtles:turtle", {
@@ -95,11 +125,21 @@ mobs:register_mob("mobs_turtles:turtle", {
 		minetest.after(5, function() self.state = "stand" end)
 	end
 })
---name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
-mobs:spawn_specific("mobs_turtles:turtle",
-	{"default:dirt_with_grass","default:jungle_grass","default:sand","default:desert_sand"},
-	{"default:dirt_with_grass","default:jungle_grass","default:sand","default:desert_sand","default:papyrus","default:cactus","dryplants:juncus","dryplants:reedmace"},
-	5, 20, 30, l_spawn_chance, 1, 1, 5000)
+if mod_config.turtle.spawn.enabled then
+	--name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
+	mobs:spawn_specific(
+		"mobs_turtles:turtle",
+		mod_config.turtle.spawn.on,
+		mod_config.turtle.spawn.near,
+		mod_config.turtle.spawn.min_light,
+		mod_config.turtle.spawn.max_light,
+		mod_config.turtle.spawn.interval,
+		mod_config.turtle.spawn.chance,
+		mod_config.turtle.spawn.active_object_count,
+		mod_config.turtle.spawn.min_height,
+		mod_config.turtle.spawn.max_height,
+	)
+end
 mobs:register_egg("mobs_turtles:turtle", "Turtle", "default_grass.png", 1)
 
 -- sea turtle
@@ -140,9 +180,19 @@ mobs:register_mob("mobs_turtles:seaturtle", {
 		if mobs:capture_mob(self, clicker, 60, 80, 100, false, nil) then return end
 	end
 })
---name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
-mobs:spawn_specific("mobs_turtles:seaturtle",
-	{"default:water_flowing","default:water_source"},
-	{"default:water_flowing","default:water_source","group:seaplants","seawrecks:woodship","seawrecks:uboot"},
-	5, 20, 30, l_spawn_chance, 1, -50, 0)
+if mod_config.seaturtle.spawn.enabled then
+	--name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
+	mobs:spawn_specific(
+		"mobs_turtles:seaturtle",
+		mod_config.seaturtle.spawn.on,
+		mod_config.seaturtle.spawn.near,
+		mod_config.seaturtle.spawn.min_light,
+		mod_config.seaturtle.spawn.max_light,
+		mod_config.seaturtle.spawn.interval,
+		mod_config.seaturtle.spawn.chance,
+		mod_config.seaturtle.spawn.active_object_count,
+		mod_config.seaturtle.spawn.min_height,
+		mod_config.seaturtle.spawn.max_height,
+	)
+end
 mobs:register_egg("mobs_turtles:seaturtle", "Sea Turtle", "default_water.png", 1)

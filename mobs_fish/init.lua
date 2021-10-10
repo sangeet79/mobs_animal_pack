@@ -1,12 +1,39 @@
 if not mobs.mod == "redo" then return end
 
+local mod_config = config.settings_model('mobs_fish', {
+	clownfish = {
+		spawn = {
+			enabled = types.boolean(true),
+			on = types.list({"default:water_source", "default:water_flowing", "default:river_water_source", "default:river_water_flowing"}),
+			near = types.list({"default:sand","default:dirt","group:seaplants","group:seacoral"}),
+			interval = types.int(30, { min=1 }),
+			chance = types.int(100000, { min=1 }),
+			min_light = types.int(5, { min=0 }),
+			max_light = types.int(20, { min=0 }),
+			min_height = types.int(-50, { min=-31000, max=31000 }),
+			max_height = types.int(-1, { min=-31000, max=31000 }),
+			active_object_count = types.int(1, { min=1 }),
+		}
+	},
+	tropical = {
+		spawn = {
+			enabled = types.boolean(true),
+			on = types.list({"default:water_source", "default:water_flowing", "default:river_water_source", "default:river_water_flowing"}),
+			near = types.list({"default:sand","default:dirt","group:seaplants","group:seacoral"}),
+			interval = types.int(30, { min=1 }),
+			chance = types.int(100000, { min=1 }),
+			min_light = types.int(5, { min=0 }),
+			max_light = types.int(20, { min=0 }),
+			min_height = types.int(-50, { min=-31000, max=31000 }),
+			max_height = types.int(-1, { min=-31000, max=31000 }),
+			active_object_count = types.int(1, { min=1 }),
+		}
+	}
+})
+
 -- local variables
-local l_spawn_in          = {"default:water_source", "default:water_flowing", "default:river_water_source", "default:river_water_flowing"}
-local l_spawn_near        = {"default:sand","default:dirt","group:seaplants","group:seacoral"}
-local l_spawn_chance      = 100000
 local l_cc_hand           = 25
 local l_cc_net            = 80
-local l_water_level       = minetest.settings:get("water_level") - 1
 local l_anims             = {
 	speed_normal = 24,		speed_run = 24,
 	stand_start = 1,		stand_end = 80,
@@ -56,8 +83,21 @@ mobs:register_mob("mobs_fish:clownfish", {
 		mobs:capture_mob(self, clicker, l_cc_hand, l_cc_net, 0, true, "mobs_fish:clownfish")
 	end
 })
---name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
-mobs:spawn_specific("mobs_fish:clownfish", l_spawn_in, l_spawn_near, 5, 20, 30, l_spawn_chance, 1, -50, l_water_level)
+if mod_config.clownfish.spawn.enabled then
+	--name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
+	mobs:spawn_specific(
+		"mobs_fish:clownfish",
+		mod_config.clownfish.spawn.on,
+		mod_config.clownfish.spawn.near,
+		mod_config.clownfish.spawn.min_light,
+		mod_config.clownfish.spawn.max_light,
+		mod_config.clownfish.spawn.interval,
+		mod_config.clownfish.spawn.chance,
+		mod_config.clownfish.spawn.active_object_count,
+		mod_config.clownfish.spawn.min_height,
+		mod_config.clownfish.spawn.max_height,
+	)
+end
 mobs:register_egg("mobs_fish:clownfish", "Clownfish", "animal_clownfish_clownfish_item.png", 0)
 
 -- Tropical fish
@@ -88,6 +128,19 @@ mobs:register_mob("mobs_fish:tropical", {
 		mobs:capture_mob(self, clicker, l_cc_hand, l_cc_net, 0, true, "mobs_fish:tropical")
 	end
 })
---name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
-mobs:spawn_specific("mobs_fish:tropical", l_spawn_in, l_spawn_near, 5, 20, 30, l_spawn_chance, 1, -50, l_water_level)
+if mod_config.tropical.spawn.enabled then
+	--name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
+	mobs:spawn_specific(
+		"mobs_fish:tropical",
+		mod_config.tropical.spawn.on,
+		mod_config.tropical.spawn.near,
+		mod_config.tropical.spawn.min_light,
+		mod_config.tropical.spawn.max_light,
+		mod_config.tropical.spawn.interval,
+		mod_config.tropical.spawn.chance,
+		mod_config.tropical.spawn.active_object_count,
+		mod_config.tropical.spawn.min_height,
+		mod_config.tropical.spawn.max_height,
+	)
+end
 mobs:register_egg("mobs_fish:tropical", "Tropical fish", "animal_fish_blue_white_fish_blue_white_item.png", 0)

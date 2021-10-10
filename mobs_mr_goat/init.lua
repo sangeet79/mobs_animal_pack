@@ -1,5 +1,22 @@
 if not mobs.mod == "redo" then return end
 
+local mod_config = config.settings_model('mobs_mr_goat', {
+	goat = {
+		spawn = {
+			enabled = types.boolean(true),
+			on = types.list({"default:dirt_with_grass", "ethereal:green_dirt_top"}),
+			near = types.list({ "air" }),
+			interval = types.int(30, { min=1 }),
+			chance = types.int(300000, { min=1 }),
+			min_light = types.int(10, { min=0 }),
+			max_light = types.int(15, { min=0 }),
+			min_height = types.int(1, { min=-31000, max=31000 }),
+			max_height = types.int(5000, { min=-31000, max=31000 }),
+			active_object_count = types.int(1, { min=1 }),
+		}
+	}
+})
+
 mobs:register_mob("mobs_mr_goat:goat", {
 	type = "animal",
 	visual = "mesh",
@@ -81,21 +98,22 @@ mobs:register_mob("mobs_mr_goat:goat", {
 	end
 })
 
-local l_spawn_elevation_min = minetest.setting_get("water_level")
-if l_spawn_elevation_min then
-	l_spawn_elevation_min = l_spawn_elevation_min + 1
-else
-	l_spawn_elevation_min = 1
+if mod_config.goat.spawn.enabled then
+	mobs:spawn_specific(
+		"mobs_mr_goat:goat",
+		mod_config.goat.spawn.on,
+		mod_config.goat.spawn.near,
+		mod_config.goat.spawn.min_light,
+		mod_config.goat.spawn.max_light,
+		mod_config.goat.spawn.interval,
+		mod_config.goat.spawn.chance,
+		mod_config.goat.spawn.active_object_count,
+		mod_config.goat.spawn.min_height,
+		mod_config.goat.spawn.max_height,
+		true
+	)
 end
-mobs:spawn({
-	name = "mobs_mr_goat:goat",
-	nodes = {"default:dirt_with_grass", "ethereal:green_dirt_top"},
-	min_light = 10,
-	chance = 300000,
-	min_height = l_spawn_elevation_min,
-	max_height = 5000,
-	day_toggle = true,
-})
+
 mobs:register_egg("mobs_mr_goat:goat", "Goat", "default_grass.png", 1)
 
 -- bucket of goat milk

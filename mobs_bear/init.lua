@@ -1,5 +1,22 @@
 if not mobs.mod == "redo" then return end
 
+local mod_config = config.settings_model('mobs_bear', {
+	medved = {
+		spawn = {
+			enabled = types.boolean(true),
+			on = types.list({ "default:dirt_with_grass", "ethereal:green_dirt_top" }),
+			near = types.list({ "air" }),
+			interval = types.int(30, { min=1 }),
+			chance = types.int(300000, { min=1 }),
+			min_light = types.int(10, { min=0 }),
+			max_light = types.int(15, { min=0 }),
+			min_height = types.int(-10, { min=-31000, max=31000 }),
+			max_height = types.int(5000, { min=-31000, max=31000 }),
+			active_object_count = types.int(1, { min=1 }),
+		}
+	}
+})
+
 mobs:register_mob("mobs_bear:medved", {
 	type = "animal",
 	visual = "mesh",
@@ -101,14 +118,20 @@ mobs:register_mob("mobs_bear:medved", {
 	end
 })
 
-local l_spawn_elevation_min = (minetest.setting_get("water_level") or 0) - 10
-mobs:spawn({
-	name = "mobs_bear:medved",
-	nodes = {"default:dirt_with_grass", "ethereal:green_dirt_top"},
-	min_light = 10,
-	chance = 300000,
-	min_height = l_spawn_elevation_min,
-	max_height = 5000,
-	day_toggle = true,
-})
+if mod_config.medved.spawn.enabled then
+	mobs:spawn_specific(
+		"mobs_bear:medved",
+		mod_config.medved.spawn.on,
+		mod_config.medved.spawn.near,
+		mod_config.medved.spawn.min_light,
+		mod_config.medved.spawn.max_light,
+		mod_config.medved.spawn.interval,
+		mod_config.medved.spawn.chance,
+		mod_config.medved.spawn.active_object_count,
+		mod_config.medved.spawn.min_height,
+		mod_config.medved.spawn.max_height,
+		true
+	)
+end
+
 mobs:register_egg("mobs_bear:medved", "Bear", "wool_brown.png", 1)

@@ -1,5 +1,30 @@
 if not mobs.mod == "redo" then return end
 
+local mod_config = config.settings_model('mobs_bugslive', {
+	bug = {
+		spawn = {
+			enabled = types.boolean(true),
+			on = types.list({
+				"default:dirt",
+				"default:dirt_with_grass",
+				"default:dirt_with_coniferous_litter",
+				"default:dirt_with_dry_grass",
+				"default:dirt_with_rainforest_litter",
+				"default:stone",
+				"ethereal:green_dirt_top"
+			}),
+			near = types.list({ "air", "default:water_source", "default:water_flowing", "default:river_water_source", "default:river_water_flowing" }),
+			interval = types.int(30, { min=1 }),
+			chance = types.int(300000, { min=1 }),
+			min_light = types.int(0, { min=0 }),
+			max_light = types.int(15, { min=0 }),
+			min_height = types.int(-25000, { min=-31000, max=31000 }),
+			max_height = types.int(5000, { min=-31000, max=31000 }),
+			active_object_count = types.int(2, { min=1 }),
+		}
+	}
+})
+
 mobs:register_mob("mobs_bugslive:bug", {
 	type = "animal",
 	visual = "mesh",
@@ -63,18 +88,20 @@ mobs:register_mob("mobs_bugslive:bug", {
 	end
 })
 
---name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height
-mobs:spawn_specific("mobs_bugslive:bug",
-	{
-		"default:dirt",
-		"default:dirt_with_grass",
-		"default:dirt_with_coniferous_litter",
-		"default:dirt_with_dry_grass",
-		"default:dirt_with_rainforest_litter",
-		"default:stone",
-		"ethereal:green_dirt_top"
-	},
-	{"air", "default:water_source", "default:water_flowing", "default:river_water_source", "default:river_water_flowing"},
-	0, 15, 30, 300000, 2, -25000, 5000
-)
+if mod_config.bug.spawn.enabled then
+	--name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height
+	mobs:spawn_specific(
+		"mobs_bugslive:bug",
+		mod_config.bug.spawn.on,
+		mod_config.bug.spawn.near,
+		mod_config.bug.spawn.min_light,
+		mod_config.bug.spawn.max_light,
+		mod_config.bug.spawn.interval,
+		mod_config.bug.spawn.chance,
+		mod_config.bug.spawn.active_object_count,
+		mod_config.bug.spawn.min_height,
+		mod_config.bug.spawn.max_height,
+	)
+end
+
 mobs:register_egg("mobs_bugslive:bug", "Bug", "inv_bug.png", 0)

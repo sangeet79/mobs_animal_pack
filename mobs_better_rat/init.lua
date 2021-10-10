@@ -1,5 +1,22 @@
 if not mobs.mod == "redo" then return end
 
+local mod_config = config.settings_model('mobs_better_rat', {
+	rat = {
+		spawn = {
+			enabled = types.boolean(true),
+			on = types.list({ "default:stone" }),
+			near = types.list({ "air" }),
+			interval = types.int(30, { min=1 }),
+			chance = types.int(300000, { min=1 }),
+			min_light = types.int(0, { min=0 }),
+			max_light = types.int(14, { min=0 }),
+			min_height = types.int(-25000, { min=-31000, max=31000 }),
+			max_height = types.int(5000, { min=-31000, max=31000 }),
+			active_object_count = types.int(2, { min=1 }),
+		}
+	}
+})
+
 mobs:register_mob("mobs_better_rat:rat", {
 	type = "animal",
 	visual = "mesh",
@@ -60,10 +77,20 @@ mobs:register_mob("mobs_better_rat:rat", {
 	end
 })
 
---name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height
-mobs:spawn_specific("mobs_better_rat:rat",
-	{"default:stone"},
-	{"air"},
-	0, 14, 30, 300000, 2, -25000, 5000
-)
+if mod_config.rat.spawn.enabled then
+	--name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height
+	mobs:spawn_specific(
+		"mobs_better_rat:rat",
+		mod_config.rat.spawn.on,
+		mod_config.rat.spawn.near,
+		mod_config.rat.spawn.min_light,
+		mod_config.rat.spawn.max_light,
+		mod_config.rat.spawn.interval,
+		mod_config.rat.spawn.chance,
+		mod_config.rat.spawn.active_object_count,
+		mod_config.rat.spawn.min_height,
+		mod_config.rat.spawn.max_height,
+	)
+end
+
 mobs:register_egg("mobs_better_rat:rat", "Mouse", "wool_brown.png", 1)

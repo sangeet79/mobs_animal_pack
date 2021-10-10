@@ -5,8 +5,23 @@ local l_skins = {
 	{"animal_bat.png"},
 	{"animal_bat.png^[colorize:black:150"}
 }
-local l_spawnnear	= {"default:stone"}
-local l_spawnchance	= 300000
+
+local mod_config = config.settings_model('mobs_bat', {
+	bat = {
+		spawn = {
+			enabled = types.boolean(true),
+			on = types.list({ "air" }),
+			near = types.list({ "default:stone" }),
+			interval = types.int(30, { min=1 }),
+			chance = types.int(300000, { min=1 }),
+			min_light = types.int(0, { min=0 }),
+			max_light = types.int(6, { min=0 }),
+			min_height = types.int(-25000, { min=-31000, max=31000 }),
+			max_height = types.int(5000, { min=-31000, max=31000 }),
+			active_object_count = types.int(1, { min=1 }),
+		}
+	}
+})
 
 mobs:register_mob("mobs_bat:bat", {
 	type = "animal",
@@ -51,6 +66,20 @@ mobs:register_mob("mobs_bat:bat", {
 	},
 })
 
---name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height
-mobs:spawn_specific("mobs_bat:bat", {"air"}, l_spawnnear, 0, 6, 30, l_spawnchance, 2, -25000, 5000)
+if mod_config.bat.spawn.enabled then
+	--name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height
+	mobs:spawn_specific(
+		"mobs_bat:bat",
+		mod_config.bat.spawn.on,
+		mod_config.bat.spawn.near,
+		mod_config.bat.spawn.min_light,
+		mod_config.bat.spawn.max_light,
+		mod_config.bat.spawn.interval,
+		mod_config.bat.spawn.chance,
+		mod_config.bat.spawn.active_object_count,
+		mod_config.bat.spawn.min_height,
+		mod_config.bat.spawn.max_height,
+	)
+end
+
 mobs:register_egg("mobs_bat:bat", "Bat", "animal_bat_inv.png", 0)
