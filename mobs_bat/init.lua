@@ -18,7 +18,7 @@ local mod_config = config.settings_model('mobs_bat', {
 			max_light = types.int(6, { min=0 }),
 			min_height = types.int(-25000, { min=-31000, max=31000 }),
 			max_height = types.int(5000, { min=-31000, max=31000 }),
-			active_object_count = types.int(1, { min=1 }),
+			active_object_count = types.int(2, { min=1 }),
 		}
 	}
 })

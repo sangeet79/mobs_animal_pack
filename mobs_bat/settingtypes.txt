@@ -27,4 +27,4 @@ mobs_bat.bat.spawn.min_height (Min. world height for bat spawning) int -25000 -3
 mobs_bat.bat.spawn.max_height (Max. world height for bat spawning) int 5000 -31000 31000
 
 # Number of bat mobs to spawn at one time inside map area
-mobs_bat.bat.spawn.active_object_count (Number of bats in the same place) int 1 1
+mobs_bat.bat.spawn.active_object_count (Number of bats in the same place) int 2 1
