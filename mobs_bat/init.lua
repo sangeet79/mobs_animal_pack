@@ -83,3 +83,6 @@ if mod_config.bat.spawn.enabled then
 end
 
 mobs:register_egg("mobs_bat:bat", "Bat", "animal_bat_inv.png", 0)
+
+dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')
+

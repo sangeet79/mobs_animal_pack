@@ -11,7 +11,7 @@ local mod_config = config.settings_model('mobs_fish', {
 			min_light = config.types.int(5, { min=0 }),
 			max_light = config.types.int(20, { min=0 }),
 			min_height = config.types.int(-50, { min=-31000, max=31000 }),
-			max_height = config.types.int(-1, { min=-31000, max=31000 }),
+			max_height = config.types.int(0, { min=-31000, max=31000 }),
 			active_object_count = config.types.int(1, { min=1 }),
 		}
 	},
@@ -25,7 +25,7 @@ local mod_config = config.settings_model('mobs_fish', {
 			min_light = config.types.int(5, { min=0 }),
 			max_light = config.types.int(20, { min=0 }),
 			min_height = config.types.int(-50, { min=-31000, max=31000 }),
-			max_height = config.types.int(-1, { min=-31000, max=31000 }),
+			max_height = config.types.int(0, { min=-31000, max=31000 }),
 			active_object_count = config.types.int(1, { min=1 }),
 		}
 	}
@@ -144,3 +144,6 @@ if mod_config.tropical.spawn.enabled then
 	)
 end
 mobs:register_egg("mobs_fish:tropical", "Tropical fish", "animal_fish_blue_white_fish_blue_white_item.png", 0)
+
+dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')
+

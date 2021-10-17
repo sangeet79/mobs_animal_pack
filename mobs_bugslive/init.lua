@@ -105,3 +105,6 @@ if mod_config.bug.spawn.enabled then
 end
 
 mobs:register_egg("mobs_bugslive:bug", "Bug", "inv_bug.png", 0)
+
+dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')
+

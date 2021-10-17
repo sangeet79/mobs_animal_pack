@@ -103,3 +103,6 @@ end
 mobs:register_egg("mobs_walrus:walrus", "Walrus", "default_grass.png", 1)
 
 minetest.register_alias_force("arctic_life:walrus", "mobs_walrus:walrus")
+
+dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')
+

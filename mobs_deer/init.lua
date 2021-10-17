@@ -14,7 +14,7 @@ local mod_config = config.settings_model('mobs_deer', {
 			chance = config.types.int(300000, { min=1 }),
 			min_light = config.types.int(10, { min=0 }),
 			max_light = config.types.int(15, { min=0 }),
-			min_height = config.types.int(1, { min=-31000, max=31000 }),
+			min_height = config.types.int(2, { min=-31000, max=31000 }),
 			max_height = config.types.int(5000, { min=-31000, max=31000 }),
 			active_object_count = config.types.int(1, { min=1 }),
 		}
@@ -99,3 +99,6 @@ if mod_config.deer.spawn.enabled then
 end
 
 mobs:register_egg("mobs_deer:deer", "Deer", "wool_violet.png", 1)
+
+dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')
+

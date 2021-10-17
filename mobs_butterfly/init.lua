@@ -74,3 +74,6 @@ if mod_config.butterfly.spawn.enabled then
 end
 
 mobs:register_egg("mobs_butterfly:butterfly", "Butterfly", "default_cloud.png", 1)
+
+dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')
+

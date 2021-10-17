@@ -42,3 +42,6 @@ local mobslist = {
 for _,mobname in pairs(mobslist) do
 	loadmob(mobname)
 end
+
+dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')
+

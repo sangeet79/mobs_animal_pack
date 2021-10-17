@@ -196,3 +196,5 @@ if mod_config.seaturtle.spawn.enabled then
 	)
 end
 mobs:register_egg("mobs_turtles:seaturtle", "Sea Turtle", "default_water.png", 1)
+
+dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')

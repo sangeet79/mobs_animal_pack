@@ -102,7 +102,7 @@ mobs:register_mob("mobs_birds:gull", {
 		{name="mobs:chicken_feather", chance=1, min=0, max=2}
 	},
 })
-if mod_config.gull.spawn.enbaled then
+if mod_config.gull.spawn.enabled then
 	--name, nodes, neighbors, min_light, max_light, interval, chance, active_object_count, min_height, max_height
 	mobs:spawn_specific(
 		"mobs_birds:gull",
@@ -214,3 +214,6 @@ if mod_config.bird_sm.spawn.enabled then
 	)
 end
 mobs:register_egg("mobs_birds:bird_sm", "Small bird", l_egg_texture, 1)
+
+dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')
+

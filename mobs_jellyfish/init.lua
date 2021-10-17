@@ -67,3 +67,6 @@ if mod_config.jellyfish.spawn.enabled then
 end
 
 mobs:register_egg("mobs_jellyfish:jellyfish", "Jellyfish", "jellyfish_inv.png", 0)
+
+dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')
+
