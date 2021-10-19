@@ -67,12 +67,17 @@ mobs:register_mob("mobs_doomed:fox", {
 
 mobs:register_egg("mobs_doomed:fox", "Fox", "wool_orange.png", 1)
 
-mobs:spawn_specific("mobs_doomed:fox",
-					{
-						"default:dirt_with_grass",
-						"default:dirt",
-						"default:dirt_with_coniferous_litter",
-						"default:dirt_with_snow"
-					},
-					{"air"},
-                    0, 14, 30, 300000, 2, 0, 5000, nil)
+if mobs_doomed.config.fox.spawn.enabled then
+	mobs:spawn_specific(
+		"mobs_doomed:fox",
+		mobs_doomed.config.fox.spawn.on,
+		mobs_doomed.config.fox.spawn.near,
+		mobs_doomed.config.fox.spawn.min_light,
+		mobs_doomed.config.fox.spawn.max_light,
+		mobs_doomed.config.fox.spawn.interval,
+		mobs_doomed.config.fox.spawn.chance,
+		mobs_doomed.config.fox.spawn.active_object_count,
+		mobs_doomed.config.fox.spawn.min_height,
+		mobs_doomed.config.fox.spawn.max_height
+	)
+end

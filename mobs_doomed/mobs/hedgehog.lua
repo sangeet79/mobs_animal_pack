@@ -52,10 +52,17 @@ mobs:register_mob("mobs_doomed:hedgehog", {
 
 mobs:register_egg("mobs_doomed:hedgehog", "Hedgehog", "wool_brown.png", 1)
 
-mobs:spawn_specific("mobs_doomed:hedgehog",
-					{
-						"default:dirt_with_grass",
-						"default:dirt_with_coniferous_litter"
-					},
-					{"air"},
-                    0, 14, 30, 300000, 2, 0, 5000, nil)
+if mobs_doomed.config.hedgehog.spawn.enabled then
+	mobs:spawn_specific(
+		"mobs_doomed:hedgehog",
+		mobs_doomed.config.hedgehog.spawn.on,
+		mobs_doomed.config.hedgehog.spawn.near,
+		mobs_doomed.config.hedgehog.spawn.min_light,
+		mobs_doomed.config.hedgehog.spawn.max_light,
+		mobs_doomed.config.hedgehog.spawn.interval,
+		mobs_doomed.config.hedgehog.spawn.chance,
+		mobs_doomed.config.hedgehog.spawn.active_object_count,
+		mobs_doomed.config.hedgehog.spawn.min_height,
+		mobs_doomed.config.hedgehog.spawn.max_height
+	)
+end

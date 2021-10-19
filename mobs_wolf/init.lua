@@ -1,5 +1,27 @@
 if not mobs.mod == "redo" then return end
 
+local mod_config = config.settings_model('mobs_wolf', {
+	wolf = {
+		spawn = {
+			enabled = config.types.boolean(true),
+			on = config.types.list({
+				"default:dirt_with_grass",
+				"default:dirt_with_snow",
+				"default:dirt_with_coniferous_litter",
+				"ethereal:green_dirt_top",
+			}),
+			near = config.types.list({ "air" }),
+			interval = config.types.int(30, { min=1 }),
+			chance = config.types.int(300000, { min=1 }),
+			min_light = config.types.int(10, { min=0 }),
+			max_light = config.types.int(15, { min=0 }),
+			min_height = config.types.int(-4, { min=-31000, max=31000 }),
+			max_height = config.types.int(5000, { min=-31000, max=31000 }),
+			active_object_count = config.types.int(1, { min=1 }),
+		}
+	}
+})
+
 mobs:register_mob("mobs_wolf:wolf", {
 	type = "animal",
 	visual = "mesh",
@@ -57,26 +79,22 @@ mobs:register_mob("mobs_wolf:wolf", {
 	end
 })
 
-local l_spawn_elevation_min = minetest.setting_get("water_level")
-if l_spawn_elevation_min then
-	l_spawn_elevation_min = l_spawn_elevation_min - 5
-else
-	l_spawn_elevation_min = -5
+if mod_config.wolf.spawn.enabled then
+	mobs:spawn_specific(
+		"mobs_wolf:wolf",
+		mod_config.wolf.spawn.on,
+		mod_config.wolf.spawn.near,
+		mod_config.wolf.spawn.min_light,
+		mod_config.wolf.spawn.max_light,
+		mod_config.wolf.spawn.interval,
+		mod_config.wolf.spawn.chance,
+		mod_config.wolf.spawn.active_object_count,
+		mod_config.wolf.spawn.min_height,
+		mod_config.wolf.spawn.max_height,
+		true
+	)
 end
-mobs:spawn({
-	name = "mobs_wolf:wolf",
-	nodes = {
-		"default:dirt_with_grass",
-		"default:dirt_with_snow",
-		"default:dirt_with_coniferous_litter",
-		"ethereal:green_dirt_top",
-	},
-	min_light = 10,
-	chance = 300000,
-	min_height = l_spawn_elevation_min,
-	max_height = 5000,
-	day_toggle = true,
-})
+
 mobs:register_egg("mobs_wolf:wolf", "Wolf", "wool_grey.png", 1)
 
 -- Dog
@@ -154,3 +172,6 @@ mobs:register_mob("mobs_wolf:dog", {
 })
 
 mobs:register_egg("mobs_wolf:dog", "Dog", "wool_brown.png", 1)
+
+dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')
+

@@ -53,7 +53,18 @@ mobs:register_mob("mobs_doomed:whale", {
 
 mobs:register_egg("mobs_doomed:whale", "Whale", "wool_blue.png", 1)
 
-mobs:spawn_specific("mobs_doomed:whale",
-					{"default:water_source"},
-					{"default:water_source"},
-                    0, 14, 30, 3000000, 1, -40, 0, true)
+if mobs_doomed.config.whale.spawn.enabled then
+	mobs:spawn_specific(
+		"mobs_doomed:whale",
+		mobs_doomed.config.whale.spawn.on,
+		mobs_doomed.config.whale.spawn.near,
+		mobs_doomed.config.whale.spawn.min_light,
+		mobs_doomed.config.whale.spawn.max_light,
+		mobs_doomed.config.whale.spawn.interval,
+		mobs_doomed.config.whale.spawn.chance,
+		mobs_doomed.config.whale.spawn.active_object_count,
+		mobs_doomed.config.whale.spawn.min_height,
+		mobs_doomed.config.whale.spawn.max_height,
+		true
+	)
+end

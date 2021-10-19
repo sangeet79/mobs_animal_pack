@@ -53,7 +53,18 @@ mobs:register_mob("mobs_doomed:tortoise", {
 
 mobs:register_egg("mobs_doomed:tortoise", "Tortoise", "default_grass.png", 1)
 
-mobs:spawn_specific("mobs_doomed:tortoise",
-					{"default:clay", "group:sand"},
-					{"air"},
-                    10, 14, 30, 300000, 2, 0, 5000, true)
+if mobs_doomed.config.tortoise.spawn.enabled then
+	mobs:spawn_specific(
+		"mobs_doomed:tortoise",
+		mobs_doomed.config.tortoise.spawn.on,
+		mobs_doomed.config.tortoise.spawn.near,
+		mobs_doomed.config.tortoise.spawn.min_light,
+		mobs_doomed.config.tortoise.spawn.max_light,
+		mobs_doomed.config.tortoise.spawn.interval,
+		mobs_doomed.config.tortoise.spawn.chance,
+		mobs_doomed.config.tortoise.spawn.active_object_count,
+		mobs_doomed.config.tortoise.spawn.min_height,
+		mobs_doomed.config.tortoise.spawn.max_height,
+		true
+	)
+end
