@@ -3,7 +3,7 @@ if not mobs.mod == "redo" then return end
 local mod_config = config.settings_model('mobs_wolf', {
 	wolf = {
 		spawn = {
-			enabled = config.types.boolean(true),
+			enabled = config.types.boolean(trumobs_animale),
 			on = config.types.list({
 				"default:dirt_with_grass",
 				"default:dirt_with_snow",
@@ -172,6 +172,3 @@ mobs:register_mob("mobs_wolf:dog", {
 })
 
 mobs:register_egg("mobs_wolf:dog", "Dog", "wool_brown.png", 1)
-
-dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')
-
