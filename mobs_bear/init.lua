@@ -135,6 +135,3 @@ if mod_config.medved.spawn.enabled then
 end
 
 mobs:register_egg("mobs_bear:medved", "Bear", "wool_brown.png", 1)
-
-dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')
-
