@@ -99,6 +99,3 @@ if mod_config.deer.spawn.enabled then
 end
 
 mobs:register_egg("mobs_deer:deer", "Deer", "wool_violet.png", 1)
-
-dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')
-
