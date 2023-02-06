@@ -1,5 +1,7 @@
 if not mobs.mod == "redo" then return end
 
+local trumobs_animale
+
 local mod_config = config.settings_model('mobs_wolf', {
 	wolf = {
 		spawn = {
