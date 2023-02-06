@@ -94,6 +94,3 @@ if mod_config.rat.spawn.enabled then
 end
 
 mobs:register_egg("mobs_better_rat:rat", "Mouse", "wool_brown.png", 1)
-
-dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')
-
