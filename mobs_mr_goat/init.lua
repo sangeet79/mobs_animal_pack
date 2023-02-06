@@ -160,6 +160,3 @@ minetest.register_craft({
 		{'mobs_mr_goat:goatcheeseblock'}
 	}
 })
-
-dofile(minetest.get_modpath(minetest.get_current_modname())..'/test.lua')
-
